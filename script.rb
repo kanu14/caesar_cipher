@@ -7,9 +7,15 @@
 # 
 # if ascii is over 122, make it return to 97
 
+print "Enter text for cipher: "
+encode = gets.chomp
+
+print "Enter cipher key: "
+shifted = gets.chomp.to_i
+
 def caesar_cipher(text, key)
-  new_text = Array.new
-  old_text = text.chars
+
+  old_text = text.downcase.chars
   
   # old_text.each_with_index { |num| puts old_text.ord}
   # p old_text
@@ -18,7 +24,9 @@ def caesar_cipher(text, key)
   # next line creates an array with the adjusted numbers
   # new_array = old_text.map { |letters| p  letters.ord + key }
   new_array = old_text.map do |letters| 
-    if (letters.ord == 32)
+    # if (letters.ord == 32)
+    #     p letters.chr
+    if letters.ord < 97 || letters.ord > 122
         p letters.chr
     elsif (letters.ord + key > 122)
         p (letters.ord + key - 122 + 96).chr
@@ -29,4 +37,4 @@ def caesar_cipher(text, key)
   
 end
 
-caesar_cipher("hello world", 5)
+caesar_cipher(encode, shifted)
